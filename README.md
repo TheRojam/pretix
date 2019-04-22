@@ -43,7 +43,7 @@ It needs an apt based system like Debian or Ubuntu. Also the [stuvusIT.nginx](ht
   become: true
   vars:
     pretix_instance_name: Stuvus Tickettest
-    pretix_instance_url: chris01.int.stuvus.uni-stuttgart.de
+    pretix_instance_url: tickets.int.stuvus.uni-stuttgart.de
 
     pretix_mail_name: stuvus - Tickets
     pretix_mail_address: tickets@stuvus.uni-stuttgart.de
@@ -104,7 +104,7 @@ It needs an apt based system like Debian or Ubuntu. Also the [stuvusIT.nginx](ht
 
 ## License
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+This work is licensed under a MIT License.
 
 
 ## Author Information
