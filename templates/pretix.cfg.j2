@@ -1,0 +1,24 @@
+[pretix]
+instance_name={{ pretix_instance_name }}
+url={{ pretix_instance_url }}
+currency={{ pretix_currency }}
+datadir={{ pretix_dir }}/data
+
+[database]
+backend=postgresql
+name={{ pretix_db_name }}
+user={{ pretix_user }}
+password=
+host=
+
+[mail]
+from={{ pretix_mail_address }}
+host={{ pretix_mail_host }}
+
+[redis]
+location=redis://{{ pretix_redis_location}}/0
+session=true
+
+[celery]
+backend=redis://{{ pretix_redis_location}}/1
+broker=redis://{{ pretix_redis_location}}/2

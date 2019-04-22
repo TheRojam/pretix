@@ -1,0 +1,25 @@
+---
+# Pretix
+pretix_user: pretix
+pretix_group: pretix
+pretix_currency: EUR
+
+# File Dirs
+pretix_config_dir: /etc/pretix
+pretix_dir: /var/pretix
+
+
+# Postgres DB
+pretix_db_name: pretix
+pretix_db_user: pretix
+
+
+# Redis
+pretix_redis_location: 127.0.0.1
+
+
+# Mail
+pretix_mail_host: 127.0.0.1
+pretix_mail_port: 465
+pretix_mail_tls: on
+

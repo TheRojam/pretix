@@ -1,0 +1,99 @@
+---
+- name: Install required apt packages
+  apt:
+    name:
+      - git 
+      - build-essential
+      - python-dev
+      - python3-venv
+      - python3
+      - python3-pip
+      - python3-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - libffi-dev
+      - zlib1g-dev
+      - libssl-dev
+      - gettext
+      - libpq-dev
+      - libmariadbclient-dev
+      - libjpeg-dev
+      - libopenjp2-7-dev
+
+- name: Create group
+  group:
+    name: '{{ pretix_group }}'
+    state: present
+
+- name: Create user
+  user:
+    name: '{{ pretix_user }}'
+    group: '{{ pretix_group }}'
+    state: present
+
+
+- name: Ensure working dir exists
+  file:
+    path: '{{ pretix_config_dir }}'
+    state: directory
+
+- name: Prepare directories
+  file:
+    path: '{{ item }}'
+    state: directory
+    owner: '{{ pretix_user }}'
+    group: '{{ pretix_group }}'
+#    mode: '0600'
+  with_items:
+    - '{{ pretix_config_dir }}'
+    - '{{ pretix_dir }}/data/media'
+
+- name:  Create config file
+  template:
+    src: pretix.cfg.j2
+    dest: '{{ pretix_config_dir }}/pretix.cfg'
+    owner: '{{ pretix_user }}'
+    group: '{{ pretix_group }}'
+    mode: '0600'
+
+- name: Install virtualenv via pip
+  pip:
+    name: virtualenv
+    executable: pip3
+
+
+- name: Install python dependencies
+  become_user: '{{ pretix_user }}'
+  pip:
+    virtualenv: '{{ pretix_dir }}/venv'
+    name: 
+      - setuptools 
+      - wheel
+      - pretix[postgres]
+      - gunicorn
+
+- name: Migrate Django
+  become_user: '{{ pretix_user }}'
+  command: '{{ pretix_dir }}/venv/bin/python -m pretix migrate'
+
+- name: Build Django
+  become_user: '{{ pretix_user }}'
+  command: '{{ pretix_dir }}/venv/bin/python -m pretix rebuild'
+
+
+- name: Install systemd service files
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  notify: "Restart pretix serivces"
+  with_items:
+    - {src: "pretix_web.service.j2",dest: "/lib/systemd/system/pretix_web.service"}
+    - {src: "pretix_worker.service.j2",dest: "/lib/systemd/system/pretix_worker.service"}
+
+
+- name: Put the managment command in a crontab
+  cron:
+    name: "run pretix periodic"
+    minute: "15,45"
+    user: '{{ pretix_user }}'
+    job: "export PATH='{{ pretix_dir}}'/venv/bin:$PATH && cd {{ pretix_dir }} && python3 -m pretix runperiodic"

@@ -1,0 +1,9 @@
+---
+- import_tasks: install.yml
+  tags: ['pretix-install']
+
+- import_tasks: database.yml
+  tags: ['pretix-database']
+
+
+

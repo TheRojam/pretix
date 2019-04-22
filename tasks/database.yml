@@ -1,0 +1,15 @@
+---
+- name: Ensure database is created
+  postgresql_db:
+    name: "{{ pretix_db_name }}"
+
+- name: Ensure user has access to the database
+  postgresql_user:
+    db: "{{ pretix_db_name }}"
+    name: "{{ pretix_db_user }}"
+    priv: ALL
+
+- name: Ensure user does not have unnecessary privileges
+  postgresql_user: 
+    name: "{{ pretix_db_user }}"
+    role_attr_flags: NOSUPERUSER,NOCREATEDB
