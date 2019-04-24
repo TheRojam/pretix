@@ -20,6 +20,6 @@ pretix_redis_location: 127.0.0.1
 
 # Mail
 pretix_mail_host: 127.0.0.1
-pretix_mail_port: 465
+pretix_mail_port: 587
 pretix_mail_tls: on
 
