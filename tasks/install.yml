@@ -2,7 +2,7 @@
 - name: Install required apt packages
   apt:
     name:
-      - git 
+      - git
       - build-essential
       - python-dev
       - python3-venv
@@ -63,23 +63,25 @@
 
 
 - name: Install python dependencies
+  become: true
   become_user: '{{ pretix_user }}'
   pip:
     virtualenv: '{{ pretix_dir }}/venv'
-    name: 
-      - setuptools 
+    name:
+      - setuptools
       - wheel
       - pretix[postgres]
       - gunicorn
 
 
 - name: Instll specific urllib
+  become: true
   become_user: '{{ pretix_user }}'
   pip:
     virtualenv: '{{ pretix_dir }}/venv'
-    name: 
+    name:
       - urllib3==1.24
-  
+
 
 
 

@@ -10,6 +10,6 @@
     priv: ALL
 
 - name: Ensure user does not have unnecessary privileges
-  postgresql_user: 
+  postgresql_user:
     name: "{{ pretix_db_user }}"
     role_attr_flags: NOSUPERUSER,NOCREATEDB

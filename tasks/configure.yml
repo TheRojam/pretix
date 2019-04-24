@@ -1,12 +1,15 @@
 ---
 - name: Migrate Django
   become_user: '{{ pretix_user }}'
+  become: true
   command: '{{ pretix_dir }}/venv/bin/python -m pretix migrate'
+  changed_when: false
 
 - name: Build Django
   become_user: '{{ pretix_user }}'
+  become: true
   command: '{{ pretix_dir }}/venv/bin/python -m pretix rebuild'
-
+  changed_when: false
 
 - name: Install systemd service files
   template:
@@ -16,7 +19,6 @@
   with_items:
     - {src: "pretix_web.service.j2",dest: "/lib/systemd/system/pretix_web.service"}
     - {src: "pretix_worker.service.j2",dest: "/lib/systemd/system/pretix_worker.service"}
-
 
 - name: Put the managment command in a crontab
   cron:
