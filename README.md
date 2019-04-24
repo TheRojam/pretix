@@ -18,7 +18,7 @@ It needs an apt based system like Debian or Ubuntu. Also the [stuvusIT.nginx](ht
 
 | Name                                | Required                 | Default                                                                     | Description                                                                                                                                                                                     |
 |:------------------------------------|:------------------------:|:----------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `pretix_instance_name`                 | :heavy_check_mark:       |                                                                             | Name of the Pretix Installation |
+| `pretix_instance_name`                 | :heavy_check_mark:       |                                                                             | Name of the Pretix installation |
 | `pretix_instance_url`                  | :heavy_check_mark:       |                                                                             | Full URL of the installation without trailing Slash |
 | `pretix_mail_address`                  | :heavy_check_mark:       |                                                                             | Name of the mail address Pretix will send mails from |
 | `pretix_mail_username`                 | :heavy_check_mark:       |                                                                             | Username of mail account to send mails from |
