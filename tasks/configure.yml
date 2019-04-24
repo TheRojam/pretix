@@ -1,0 +1,26 @@
+---
+- name: Migrate Django
+  become_user: '{{ pretix_user }}'
+  command: '{{ pretix_dir }}/venv/bin/python -m pretix migrate'
+
+- name: Build Django
+  become_user: '{{ pretix_user }}'
+  command: '{{ pretix_dir }}/venv/bin/python -m pretix rebuild'
+
+
+- name: Install systemd service files
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  notify: "Restart pretix serivces"
+  with_items:
+    - {src: "pretix_web.service.j2",dest: "/lib/systemd/system/pretix_web.service"}
+    - {src: "pretix_worker.service.j2",dest: "/lib/systemd/system/pretix_worker.service"}
+
+
+- name: Put the managment command in a crontab
+  cron:
+    name: "run pretix periodic"
+    minute: "15,45"
+    user: '{{ pretix_user }}'
+    job: "export PATH='{{ pretix_dir}}'/venv/bin:$PATH && cd {{ pretix_dir }} && python3 -m pretix runperiodic"

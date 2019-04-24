@@ -14,6 +14,11 @@ host=
 [mail]
 from={{ pretix_mail_address }}
 host={{ pretix_mail_host }}
+user={{ pretix_mail_username }}
+password={{ pretix_mail_password }}
+port={{ pretix_mail_port }}
+tls={{ pretix_mail_tls }}
+
 
 [redis]
 location=redis://{{ pretix_redis_location}}/0
