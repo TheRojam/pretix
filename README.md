@@ -8,12 +8,6 @@ Sets up and configures a pretix instance.
 It needs an apt based system like Debian or Ubuntu. Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](https://github.com/stuvusIT/redis) and [stuvusIT.postgresql](https://github.com/stuvusIT/postgresql) roles are required.
 
 
-
-
-
-
-
-
 ## Role Variables
 
 | Name                                | Required                 | Default                                                                     | Description                                                                                                                                                                                     |
