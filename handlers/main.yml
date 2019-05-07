@@ -11,7 +11,7 @@
     name: '{{ item }}'
     state: restarted
     enabled: yes
-  with_items:
+  loop:
     - pretix_web
     - pretix_worker
   listen: "Restart pretix serivces"
