@@ -50,8 +50,6 @@ Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](h
 
     # Postgres
     postgres_initdb: /usr/lib/postgresql/9.6/bin/initdb
-
-
     
     # Nginx
     served_domains:
@@ -62,7 +60,6 @@ Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](h
         default_server: true
         crypto: true
         https: false
-
         locations:
         - condition: /
           content: |
@@ -89,8 +86,6 @@ Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](h
             access_log off;
             expires 365d;
             add_header Cache-Control "public";
-
-
 
   roles:
     - redis

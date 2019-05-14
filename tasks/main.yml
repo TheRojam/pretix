@@ -7,4 +7,3 @@
 
 - import_tasks: configure.yml
   tags: pretix-configure
-

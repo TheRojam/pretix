@@ -4,7 +4,6 @@
     daemon_reload: yes
   listen: "Restart pretix serivces"
 
-
 - name: Restart pretix
   service:
     name: '{{ item }}'
@@ -14,4 +13,3 @@
     - pretix_web
     - pretix_worker
   listen: "Restart pretix serivces"
-
