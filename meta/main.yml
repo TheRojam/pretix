@@ -1,10 +1,10 @@
 ---
 galaxy_info:
-  author: Christophre Behrmann
-  description: pretix instance
+  author: Christopher Behrmann
+  description: Role to install Pretix ticket sale system
   company: stuvus (https://stuvus.uni-stuttgart.de)
 
-  license: CC-BY-SA
+  license: MIT
 
   min_ansible_version: 2.4
 

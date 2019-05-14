@@ -1,3 +1,4 @@
+# Ansible managed
 [pretix]
 instance_name={{ pretix_instance_name }}
 url={{ pretix_instance_url }}
@@ -18,7 +19,6 @@ user={{ pretix_mail_username }}
 password={{ pretix_mail_password }}
 port={{ pretix_mail_port }}
 tls={{ pretix_mail_tls| ternary('On','Off') }}
-
 
 [redis]
 location=redis://{{ pretix_redis_location}}/0

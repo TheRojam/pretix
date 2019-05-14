@@ -5,7 +5,8 @@ Sets up and configures a pretix instance.
 
 ## Requirements
 
-It needs an apt based system like Debian or Ubuntu. Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](https://github.com/stuvusIT/redis) and [stuvusIT.postgresql](https://github.com/stuvusIT/postgresql) roles are required.
+It needs an apt based system like Debian or Ubuntu. 
+Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](https://github.com/stuvusIT/redis) and [stuvusIT.postgresql](https://github.com/stuvusIT/postgresql) roles are required.
 
 
 ## Role Variables
@@ -17,19 +18,19 @@ It needs an apt based system like Debian or Ubuntu. Also the [stuvusIT.nginx](ht
 | `pretix_mail_address`                  | :heavy_check_mark:       |                                                                             | Name of the mail address Pretix will send mails from |
 | `pretix_mail_username`                 | :heavy_check_mark:       |                                                                             | Username of mail account to send mails from |
 | `pretix_mail_password`                 | :heavy_check_mark:       |                                                                             | Password of mail account to send mails from |
-| `pretix_mail_host`                     | :heavy_multiplication_x:       |  `127.0.0.1`                                                          | Full URL of the installation without trailing Slash |
+| `pretix_mail_host`                     | :heavy_multiplication_x:       |  `127.0.0.1`                                                          | Full URL of the Mailserver without trailing Slash |
 | `pretix_mail_port`                     | :heavy_multiplication_x:       |  `587`                                                                | Port on which pretix will try to contact mailserver |
-| `pretix_mail_tls`                      | :heavy_multiplication_x:       |  `on`                                                                 | "on" if you want to authenticata smtp with TLS |
+| `pretix_mail_tls`                      | :heavy_multiplication_x:       |  `True`                                                                 | True if you want to authenticata smtp with TLS |
 | `pretix_user`                      | :heavy_multiplication_x:       |  `pretix`                                                                 | Name of the User pretix will be installed under |
 | `pretix_group`                     | :heavy_multiplication_x:       |  `pretix`                                                                 | Name of the Usergroup pretix will be installed under |
-| `pretix_config_dor`              | :heavy_multiplication_x:       |  `/etc/pretix`                                                               | Path of the pretix config |
-| `pretix_dir`                     | :heavy_multiplication_x:       |  `/var/pretix`                                                               | Path where alle files will be stored |
+| `pretix_config_dir`              | :heavy_multiplication_x:       |  `/etc/pretix`                                                               | Path of the pretix config |
+| `pretix_dir`                     | :heavy_multiplication_x:       |  `/var/pretix`                                                               | Path where all files will be stored |
 | `pretix_db_name`                     | :heavy_multiplication_x:       |  `pretix`                                                                 | Name of the Pretix DB (Postgres) |
 | `pretix_db_user`                     | :heavy_multiplication_x:       |  `pretix`                                                                 | Name of the Pretix DB User (Postgres) |
 | `pretix_redis_location`                     | :heavy_multiplication_x:       |  `127.0.0.1`                                                       | Host of the redis installation |
 | `pretix_gunicorn_workers`                     | :heavy_multiplication_x:       |  `5`                                                       | Gunicorn workers |
 | `pretix_gunicorn_maxrequest`                     | :heavy_multiplication_x:       |  `1200`                                                       | Max request for wsgi |
-
+| `pretix_currency`                     | :heavy_multiplication_x:       |  `EUR`                                                       | Currency in which pretix whill show prices |
 
 
 ## Example Playbook

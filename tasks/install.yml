@@ -31,7 +31,6 @@
     group: '{{ pretix_group }}'
     state: present
 
-
 - name: Ensure working dir exists
   file:
     path: '{{ pretix_config_dir }}'
