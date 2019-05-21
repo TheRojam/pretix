@@ -14,4 +14,3 @@
     - pretix_web
     - pretix_worker
   listen: Restart pretix serivces
-
