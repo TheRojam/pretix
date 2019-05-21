@@ -31,19 +31,13 @@
     group: '{{ pretix_group }}'
     state: present
 
-- name: Ensure working dir exists
-  file:
-    path: '{{ pretix_config_dir }}'
-    state: directory
-
 - name: Prepare directories
   file:
     path: '{{ item }}'
     state: directory
     owner: '{{ pretix_user }}'
     group: '{{ pretix_group }}'
-#    mode: '0600'
-  with_items:
+  loop:
     - '{{ pretix_config_dir }}'
     - '{{ pretix_dir }}/data/media'
 
@@ -53,13 +47,12 @@
     dest: '{{ pretix_config_dir }}/pretix.cfg'
     owner: '{{ pretix_user }}'
     group: '{{ pretix_group }}'
-    mode: '0600'
+    mode: 0600
 
 - name: Install virtualenv via pip
   pip:
     name: virtualenv
     executable: pip3
-
 
 - name: Install python dependencies
   become: true
@@ -72,15 +65,10 @@
       - pretix[postgres]
       - gunicorn
 
-
-- name: Instll specific urllib
+- name: Instll specific version of urllib
   become: true
   become_user: '{{ pretix_user }}'
   pip:
     virtualenv: '{{ pretix_dir }}/venv'
     name:
       - urllib3==1.24
-
-
-
-

@@ -2,7 +2,7 @@
 - name: Reload systemd daemon
   systemd:
     daemon_reload: yes
-  listen: "Restart pretix serivces"
+  listen: Restart pretix serivces
 
 
 - name: Restart pretix
@@ -13,5 +13,5 @@
   loop:
     - pretix_web
     - pretix_worker
-  listen: "Restart pretix serivces"
+  listen: Restart pretix serivces
 

@@ -3,7 +3,7 @@
   postgresql_db:
     name: "{{ pretix_db_name }}"
 
-- name: Ensure user has access to the database
+- name: Create datavbase user and  ensure the user access to the database
   postgresql_user:
     db: "{{ pretix_db_name }}"
     name: "{{ pretix_db_user }}"
