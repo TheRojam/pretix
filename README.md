@@ -41,7 +41,6 @@ Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](h
   vars:
     pretix_instance_name: Stuvus Tickettest
     pretix_instance_url: tickets.int.stuvus.uni-stuttgart.de
-
     pretix_mail_name: stuvus - Tickets
     pretix_mail_address: tickets@stuvus.uni-stuttgart.de
     pretix_mail_username: ttickets
@@ -93,6 +92,7 @@ Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](h
     - nginx
     - pretix
 ```
+
 
 ## License
 

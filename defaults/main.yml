@@ -24,6 +24,7 @@ pretix_mail_host: 127.0.0.1
 pretix_mail_port: 587
 pretix_mail_tls: True
 
+
 # System service gunicorn
 pretix_gunicorn_workers: 5
 pretix_gunicorn_maxrequest: 1200

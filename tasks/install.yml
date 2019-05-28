@@ -65,7 +65,7 @@
       - pretix[postgres]
       - gunicorn
 
-- name: Instll specific version of urllib
+- name: Install specific version of urllib
   become: true
   become_user: '{{ pretix_user }}'
   pip:
