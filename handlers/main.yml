@@ -1,0 +1,15 @@
+---
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: yes
+  listen: Restart pretix serivces
+
+- name: Restart pretix
+  service:
+    name: '{{ item }}'
+    state: restarted
+    enabled: yes
+  loop:
+    - pretix_web
+    - pretix_worker
+  listen: Restart pretix serivces
