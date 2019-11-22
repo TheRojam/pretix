@@ -15,7 +15,6 @@
   template:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    validate: systemd-analyze verify %s
   notify: "Restart pretix serivces"
   with_items:
     - {src: "pretix_web.service.j2",dest: "/lib/systemd/system/pretix_web.service"}
