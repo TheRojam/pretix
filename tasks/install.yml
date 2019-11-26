@@ -22,53 +22,56 @@
 
 - name: Create group
   group:
-    name: '{{ pretix_group }}'
+    name: "{{ pretix_group }}"
     state: present
 
 - name: Create user
   user:
-    name: '{{ pretix_user }}'
-    group: '{{ pretix_group }}'
+    name: "{{ pretix_user }}"
+    group: "{{ pretix_group }}"
     state: present
 
 - name: Prepare directories
   file:
-    path: '{{ item }}'
+    path: "{{ item }}"
     state: directory
-    owner: '{{ pretix_user }}'
-    group: '{{ pretix_group }}'
+    owner: "{{ pretix_user }}"
+    group: "{{ pretix_group }}"
   loop:
-    - '{{ pretix_config_dir }}'
-    - '{{ pretix_dir }}/data/media'
+    - "{{ pretix_config_dir }}"
+    - "{{ pretix_dir }}/data/media"
 
-- name:  Create config file
+- name: Create config file
   template:
     src: pretix.cfg.j2
-    dest: '{{ pretix_config_dir }}/pretix.cfg'
-    owner: '{{ pretix_user }}'
-    group: '{{ pretix_group }}'
+    dest: "{{ pretix_config_dir }}/pretix.cfg"
+    owner: "{{ pretix_user }}"
+    group: "{{ pretix_group }}"
     mode: 0600
 
 - name: Install virtualenv via pip
   pip:
+    state: latest
     name: virtualenv
     executable: pip3
 
 - name: Install python dependencies
   become: true
-  become_user: '{{ pretix_user }}'
+  become_user: "{{ pretix_user }}"
   pip:
-    virtualenv: '{{ pretix_dir }}/venv'
+    state: latest
+    virtualenv: "{{ pretix_dir }}/venv"
     name:
       - setuptools
       - wheel
-      - pretix[postgres]
+      - django-localflavor
+      - pretix
       - gunicorn
 
 - name: Install specific version of urllib
   become: true
-  become_user: '{{ pretix_user }}'
+  become_user: "{{ pretix_user }}"
   pip:
-    virtualenv: '{{ pretix_dir }}/venv'
+    virtualenv: "{{ pretix_dir }}/venv"
     name:
       - urllib3==1.24
