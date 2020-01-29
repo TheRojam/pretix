@@ -5,7 +5,7 @@ Sets up and configures a pretix instance.
 
 ## Requirements
 
-It needs an apt based system like Debian or Ubuntu. 
+It needs an apt based system like Debian or Ubuntu.
 Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](https://github.com/stuvusIT/redis) and [stuvusIT.postgresql](https://github.com/stuvusIT/postgresql) roles are required.
 
 
@@ -49,7 +49,7 @@ Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](h
 
     # Postgres
     postgres_initdb: /usr/lib/postgresql/9.6/bin/initdb
-    
+   
     # Nginx
     served_domains:
       - domains:
@@ -71,15 +71,15 @@ Also the [stuvusIT.nginx](https://github.com/stuvusIT/nginx), [stuvusIT.redis](h
             alias /var/pretix/data/media/;
             expires 7d;
            access_log off;
-        - condition: ^~ /media/cachedfiles 
+        - condition: ^~ /media/cachedfiles
           content: |
             deny all;
             return 404;
-        - condition: ^~ /media/invoices 
+        - condition: ^~ /media/invoices
           content: |
             deny all;
             return 404;
-        - condition: /static/ 
+        - condition: /static/
           content: |
             alias /var/pretix/venv/lib/python3.5/site-packages/pretix/static.dist/;
             access_log off;
