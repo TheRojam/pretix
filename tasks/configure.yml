@@ -20,7 +20,7 @@
     - {src: "pretix_web.service.j2",dest: "/lib/systemd/system/pretix_web.service"}
     - {src: "pretix_worker.service.j2",dest: "/lib/systemd/system/pretix_worker.service"}
 
-- name: Put the management command in a crontab
+- name: Add management command in a crontab
   cron:
     name: "run pretix periodic"
     minute: "15,45"
